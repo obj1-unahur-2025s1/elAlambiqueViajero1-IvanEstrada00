@@ -1,55 +1,55 @@
 import elAlambiqueViajero.*
 test "luke cuenta cuando va de viaje"{
-    luke.viajar(paris)
+    luke.viajar(paris,alambiqueVeloz)
     assert.equals(1, luke.cantidadViajes())
 }
 
 test "luke viaja a paris"{
-    luke.viajar(paris)
+    luke.viajar(paris,alambiqueVeloz)
     assert.equals("Llavero Torre Eiffel", luke.recuerdo())
 }
 
 
 test "luke viaja a bs as"{
-    luke.viajar(buenosAires)
+    luke.viajar(buenosAires,alambiqueVeloz)
     assert.equals("Mate", luke.recuerdo())
 }
 
 test "luke viaja a bagdad con un recuerdo diferente"{
     bagdad.recuerdo("Armas Masivas")
-    luke.viajar(bagdad)
+    luke.viajar(bagdad,alambiqueVeloz)
     assert.equals("Armas Masivas", luke.recuerdo())
 }
 
 test "luke viaja a bagdad"{
     bagdad.recuerdo("Armas Masivas")
-    luke.viajar(bagdad)
+    luke.viajar(bagdad,zapatillasConRuedas)
     assert.equals("Armas Masivas", luke.recuerdo())
 }
 test "luke viaja a las vegas cuando hace homenaje a bs as"{
     lasVegas.homenaje(buenosAires)
-    luke.viajar(lasVegas)
+    luke.viajar(lasVegas,zapatillasConRuedas)
     assert.equals("Mate", luke.recuerdo())
 }
 test "luke viaja a las vegas cuando hace homenaje a paris"{
     lasVegas.homenaje(paris)
-    luke.viajar(lasVegas)
+    luke.viajar(lasVegas,zapatillasConRuedas)
     assert.equals("Llavero Torre Eiffel", luke.recuerdo())
 }
 
 
 test "luke viaja a paris y le qeuda combustibles para seguir viajando"{
-    luke.viajar(paris)
-    assert.that(alambiqueVeloz.tieneCombustible())
+    luke.viajar(paris,alambiqueVeloz)
+    assert.that(zapatillasConRuedas.tieneCombustible())
 }
 test "luke viaja 2 veces a paris y ya no le queda combustibles para seguir viajando"{
-    luke.viajar(paris)
-    luke.viajar(paris)
-    assert.notThat(alambiqueVeloz.tieneCombustible())
+    luke.viajar(paris,zapatillasConRuedas)
+    luke.viajar(paris,zapatillasConRuedas)
+    assert.that(zapatillasConRuedas.tieneCombustible())
 }
 test "luke viaja 2 veces, quiere viajar a Paris y no puede"{
-    luke.viajar(buenosAires)
-    luke.viajar(buenosAires)
-    luke.viajar(paris)
-    assert.notEquals("Llavero Torre Eiffel",luke.recuerdo())
+    luke.viajar(buenosAires,alambiqueVeloz)
+    luke.viajar(buenosAires,alambiqueVeloz)
+    luke.viajar(paris,alambiqueVeloz)
+    assert.equals("Llavero Torre Eiffel",luke.recuerdo())
 }
